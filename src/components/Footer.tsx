@@ -15,7 +15,7 @@ export function Footer() {
             <a href="#contact" className="hover:text-foreground gentle-animation">Contact</a>
           </div>
           <div className="text-xs font-sans text-muted-foreground tracking-[0.15em]">
-            © 2025 Lade Studio
+            © 2026 Lade Studio
           </div>
         </div>
       </div>
