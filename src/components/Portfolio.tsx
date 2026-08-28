@@ -1,96 +1,91 @@
 'use client'
 
-import { Play, ExternalLink } from 'lucide-react'
-import { Button } from './ui/button'
+import { motion } from 'framer-motion'
+
+const projects = [
+  {
+    title: 'Echoes of Sand',
+    category: 'Narrative',
+    span: 'col-span-12 md:col-span-8 row-span-2',
+    image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80',
+  },
+  {
+    title: 'Desert Light',
+    category: 'Commercial',
+    span: 'col-span-12 md:col-span-4 row-span-1',
+    isText: true,
+  },
+  {
+    title: 'Still Motion',
+    category: 'Brand Film',
+    span: 'col-span-12 md:col-span-4 row-span-2',
+    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80',
+  },
+]
 
 export function Portfolio() {
   return (
     <section id="portfolio" className="relative py-32 bg-background">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-3 h-3 bg-accent-emerald rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-muted-foreground">
-              Featured Work
-            </span>
-            <div className="w-3 h-3 bg-accent-blue rounded-full animate-pulse" />
-          </div>
-          
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-8">
-            <span className="block mb-2">Creative Productions</span>
-          </h2>
-          
-          <p className="text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Our latest commercial for Hampton - exploring the lonely journey of startup founders and the power of community.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-between items-end mb-12 border-b border-[#e6ded2] pb-4"
+        >
+          <h2 className="font-serif text-5xl text-foreground">Work</h2>
+          <span className="font-sans text-sm uppercase tracking-[0.2em] text-muted-foreground hidden sm:block">
+            Selected Projects
+          </span>
+        </motion.div>
 
-        {/* Featured Video */}
-        <div className="max-w-6xl mx-auto">
-          <div className="relative bg-card clean-border rounded-3xl overflow-hidden elevated-shadow">
-            {/* Video Embed */}
-            <div className="relative">
-              <div className="aspect-video">
-                <iframe
-                  src="https://www.youtube.com/embed/fIbDWDh6aYw?rel=0&showinfo=0&modestbranding=1"
-                  title="Hampton Commercial - The Lonely Journey"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full rounded-t-3xl"
-                />
-              </div>
-              
-              {/* Floating Status Badge */}
-              <div className="absolute top-6 right-6">
-                <span className="glass-effect rounded-xl px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
-                  Latest Project
-                </span>
-              </div>
-            </div>
+        <div className="grid grid-cols-12 gap-4 auto-rows-[220px] md:auto-rows-[250px]">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`${project.span} relative overflow-hidden group ${
+                project.isText ? 'bg-[#c9b99a] flex flex-col justify-end p-8' : 'bg-card'
+              }`}
+            >
+              {!project.isText && (
+                <>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2d241c]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="text-[10px] uppercase tracking-[0.3em] opacity-80 font-sans">{project.category}</span>
+                    <h3 className="font-serif text-2xl md:text-3xl mt-1">{project.title}</h3>
+                  </div>
+                </>
+              )}
+              {project.isText && (
+                <>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/70 font-sans mb-2">{project.category}</span>
+                  <h3 className="font-serif text-2xl text-white leading-tight">{project.title}</h3>
+                </>
+              )}
+            </motion.div>
+          ))}
 
-            {/* Project Details */}
-            <div className="p-8 lg:p-12">
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="bg-accent-purple/10 text-accent-purple px-3 py-1 rounded-full text-sm font-medium">
-                    Commercial
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    Client: Hampton
-                  </span>
-                </div>
-                
-                <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                  The Lonely Journey
-                </h3>
-                
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  A powerful commercial exploring the isolation that startup founders face and how joining Hampton's community can transform that journey. This piece captures the emotional weight of entrepreneurship and the relief that comes with finding your tribe.
-                </p>
-                
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                  <div>
-                    <span className="text-muted-foreground block">Industry</span>
-                    <span className="font-medium">Community Platform</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground block">Style</span>
-                    <span className="font-medium">Narrative Drama</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground block">Tone</span>
-                    <span className="font-medium">Emotional Journey</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground block">Format</span>
-                    <span className="font-medium">Digital Commercial</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="col-span-12 md:col-span-8 row-span-1 bg-card flex items-center px-8 md:px-12"
+          >
+            <p className="font-serif text-xl md:text-2xl italic text-foreground">
+              Crafting visual legacies for global brands and independent visionaries.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
