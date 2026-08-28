@@ -20,7 +20,7 @@ const pillars = [
   { name: 'Revati Lade', role: 'Guiding Force' },
 ]
 
-function MemberCard({ name, role, index }: { name: string; role: string; index: number }) {
+function MemberCard({ name, role }: { name: string; role: string }) {
   const initials = name
     .split(' ')
     .map((n) => n.replace(/[^a-zA-Z]/g, '').charAt(0))
@@ -30,11 +30,11 @@ function MemberCard({ name, role, index }: { name: string; role: string; index: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 1, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group bg-card p-8 text-center rounded-xl hover:bg-[#f0ebe3] transition-colors duration-500"
+      transition={{ duration: 0.5 }}
+      className="group bg-card p-8 text-center rounded-xl hover:bg-[#e6ded2] transition-colors duration-500"
     >
       <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#e6ded2] flex items-center justify-center">
         <span className="font-serif text-2xl text-[#8b7355]">{initials}</span>
