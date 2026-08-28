@@ -93,8 +93,8 @@ export function Team() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {pillars.map((member, index) => (
-            <MemberCard key={member.name} name={member.name} role={member.role} index={index + 5} />
+          {pillars.map((member) => (
+            <MemberCard key={member.name} name={member.name} role={member.role} />
           ))}
         </div>
       </div>
