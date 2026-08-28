@@ -25,10 +25,10 @@ export function About() {
               The Studio
             </span>
             <h2 className="font-serif text-4xl md:text-5xl text-foreground leading-tight">
-              We believe in the soul of the machine.
+              Founded by Girish Lade.
             </h2>
             <p className="font-sans text-lg font-light leading-relaxed text-foreground/80">
-              Based in the intersection of light and shadow, Lade Studio is a boutique film house dedicated to high-fidelity storytelling. We blend editorial precision with cinematic scope to create work that resonates long after the credits roll.
+              Lade Studio is a family-built film house dedicated to high-fidelity storytelling. Led by Girish Lade and supported by a close circle of partners and collaborators, we blend editorial precision with cinematic scope to create work that resonates long after the credits roll.
             </p>
             <a
               href="#team"
