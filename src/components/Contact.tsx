@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
+import { motion } from 'framer-motion'
 
 export function Contact() {
   const { toast } = useToast()
@@ -13,7 +16,6 @@ export function Contact() {
       return
     }
     setIsSubmitting(true)
-    // Simulate submission — connect to a backend to actually send
     setTimeout(() => {
       toast({ title: 'Message sent!', description: "We'll get back to you soon." })
       setFormData({ name: '', email: '', message: '' })
@@ -22,130 +24,72 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-32 bg-card/30">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-3 h-3 bg-accent-emerald rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-muted-foreground">
-              Let's Create Together
+    <section id="contact" className="relative py-32 bg-background border-t border-[#e6ded2]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block border-b border-[#c9b99a] pb-2 text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-6">
+              Contact
             </span>
-            <div className="w-3 h-3 bg-accent-blue rounded-full animate-pulse" />
-          </div>
-          
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-8">
-            <span className="block mb-2">Ready to Light Up the Screen?</span>
-          </h2>
-          
-          <p className="text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Tell us about your project and we'll get back to you with a plan to bring your vision to cinematic reality
-          </p>
-        </div>
+            <h2 className="font-serif text-5xl md:text-6xl text-foreground leading-tight mb-8">
+              Let's create the next legacy.
+            </h2>
+            <a
+              href="mailto:hello@lade.studio"
+              className="font-serif text-2xl text-foreground hover:text-[#c9b99a] underline underline-offset-8 gentle-animation"
+            >
+              hello@lade.studio
+            </a>
+          </motion.div>
 
-        {/* Contact Form */}
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-background clean-border rounded-3xl overflow-hidden elevated-shadow">
-            <div className="bg-card/50 px-8 py-6 border-b border-border">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-black text-foreground mb-1">
-                    Get In Touch
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Fill out the form and we'll respond within 24 hours
-                  </p>
-                </div>
-                <div className="hidden sm:flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-accent-emerald rounded-full" />
-                  <span className="text-sm text-muted-foreground font-medium">Available now</span>
-                </div>
-              </div>
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-8"
+          >
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="NAME"
+                value={formData.name}
+                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                className="w-full bg-transparent border-b border-[#e6ded2] py-4 text-xs uppercase tracking-[0.2em] font-sans text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#8b7355] transition-colors"
+              />
             </div>
-            
-            <form onSubmit={handleSubmit} className="p-8 space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    maxLength={100}
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    maxLength={255}
-                    value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">Message</label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  maxLength={1000}
-                  value={formData.message}
-                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/50 transition-all resize-none"
-                  placeholder="Tell us about your project..."
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-foreground text-background font-black text-lg hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* Bottom Info */}
-        <div className="text-center mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-background clean-border rounded-2xl p-6 subtle-shadow">
-              <div className="w-12 h-12 bg-accent-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-6 h-6 bg-accent-blue rounded-full" />
-              </div>
-              <h4 className="font-black text-foreground mb-2">Project Discussion</h4>
-              <p className="text-muted-foreground text-sm">
-                Share your vision and requirements with our team
-              </p>
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="EMAIL"
+                value={formData.email}
+                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                className="w-full bg-transparent border-b border-[#e6ded2] py-4 text-xs uppercase tracking-[0.2em] font-sans text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#8b7355] transition-colors"
+              />
             </div>
-            
-            <div className="bg-background clean-border rounded-2xl p-6 subtle-shadow">
-              <div className="w-12 h-12 bg-accent-emerald/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-6 h-6 bg-accent-emerald rounded-full" />
-              </div>
-              <h4 className="font-black text-foreground mb-2">Custom Strategy</h4>
-              <p className="text-muted-foreground text-sm">
-                Get a tailored approach for your unique project
-              </p>
+            <div className="relative">
+              <textarea
+                placeholder="MESSAGE"
+                rows={1}
+                value={formData.message}
+                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
+                className="w-full bg-transparent border-b border-[#e6ded2] py-4 text-xs uppercase tracking-[0.2em] font-sans text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#8b7355] transition-colors resize-none"
+              />
             </div>
-            
-            <div className="bg-background clean-border rounded-2xl p-6 subtle-shadow">
-              <div className="w-12 h-12 bg-accent-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-6 h-6 bg-accent-purple rounded-full" />
-              </div>
-              <h4 className="font-black text-foreground mb-2">Next Steps</h4>
-              <p className="text-muted-foreground text-sm">
-                Clear timeline and roadmap to bring your idea to life
-              </p>
-            </div>
-          </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-5 bg-[#8b7355] text-[#faf8f5] font-sans font-semibold text-[10px] uppercase tracking-[0.3em] hover:bg-[#6b5740] transition-colors disabled:opacity-50"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+            </button>
+          </motion.form>
         </div>
       </div>
     </section>
