@@ -66,16 +66,16 @@ export function Team() {
 
         {/* Founder */}
         <div className="max-w-md mx-auto mb-12">
-          <MemberCard name={founder.name} role={founder.role} index={0} />
+          <MemberCard name={founder.name} role={founder.role} />
         </div>
 
         {/* Team & Partners */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {team.map((member, index) => (
-            <MemberCard key={member.name} name={member.name} role={member.role} index={index + 1} />
+          {team.map((member) => (
+            <MemberCard key={member.name} name={member.name} role={member.role} />
           ))}
-          {partners.map((member, index) => (
-            <MemberCard key={member.name} name={member.name} role={member.role} index={index + 3} />
+          {partners.map((member) => (
+            <MemberCard key={member.name} name={member.name} role={member.role} />
           ))}
         </div>
 
