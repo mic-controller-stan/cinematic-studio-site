@@ -7,10 +7,10 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: 'calc(var(--spacing) * 4)', // 1rem with 14px base = 14px padding
+      padding: 'calc(var(--spacing) * 4)',
       screens: {
         sm: '40rem',
-        md: '48rem', 
+        md: '48rem',
         lg: '64rem',
         xl: '80rem',
         '2xl': '96rem',
@@ -18,6 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
+        serif: ['"DM Serif Display"', 'Georgia', 'serif'],
+        sans: ['"Fira Sans"', 'system-ui', 'sans-serif'],
         bagel: ['Bagel Fat One', 'cursive'],
       },
       colors: {
@@ -57,6 +59,18 @@ export default {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        sand: {
+          50: '#faf8f5',
+          100: '#f0ebe3',
+          200: '#e6ded2',
+          300: '#d4c8b8',
+          400: '#c9b99a',
+          500: '#b8a688',
+          600: '#8b7355',
+          700: '#6b5740',
+          800: '#4a3b2d',
+          900: '#2d241c',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,20 +79,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
